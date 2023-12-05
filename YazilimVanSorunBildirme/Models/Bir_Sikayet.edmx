@@ -1,0 +1,1002 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Bir_SikayetModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Basvuru">
+          <Key>
+            <PropertyRef Name="basvuru_id" />
+          </Key>
+          <Property Name="basvuru_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="konum" Type="nvarchar" MaxLength="500" />
+          <Property Name="basvuru_zamani" Type="datetime" />
+          <Property Name="basvuru_durumu" Type="nvarchar" MaxLength="500" />
+          <Property Name="dogrulanan_kisi" Type="nvarchar" MaxLength="100" />
+          <Property Name="sorun_turu_id" Type="int" />
+          <Property Name="kurum_id" Type="int" />
+          <Property Name="yetkili_id" Type="int" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Birim">
+          <Key>
+            <PropertyRef Name="birim_id" />
+          </Key>
+          <Property Name="birim_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ad" Type="nvarchar" MaxLength="100" />
+          <Property Name="kurum_id" Type="int" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Birim_Yetkili">
+          <Key>
+            <PropertyRef Name="birim_yetkili_id" />
+          </Key>
+          <Property Name="birim_yetkili_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="birim_id" Type="int" />
+          <Property Name="yetkili_id" Type="int" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Cevaplar">
+          <Key>
+            <PropertyRef Name="cevap_id" />
+          </Key>
+          <Property Name="cevap_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="cevap_zamani" Type="datetime" />
+          <Property Name="cevap_metni" Type="nvarchar" MaxLength="500" />
+          <Property Name="basvuru_id" Type="int" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dokuman_turu">
+          <Key>
+            <PropertyRef Name="dokuman_turu_id" />
+          </Key>
+          <Property Name="dokuman_turu_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="turu" Type="nvarchar" MaxLength="100" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Dokumanlar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="dosya_adi" Type="nvarchar" MaxLength="50" />
+          <Property Name="dosya_tipi" Type="nvarchar" MaxLength="50" />
+          <Property Name="dosya_boyutu" Type="int" />
+          <Property Name="basvuru_id" Type="int" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kanit">
+          <Key>
+            <PropertyRef Name="kanit_id" />
+          </Key>
+          <Property Name="kanit_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kanit" Type="nvarchar" MaxLength="1000" />
+          <Property Name="kanit_zamani" Type="datetime" />
+          <Property Name="dokuman_turu_id" Type="int" />
+          <Property Name="basvuru_id" Type="int" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kurum">
+          <Key>
+            <PropertyRef Name="kurum_id" />
+          </Key>
+          <Property Name="kurum_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kurum_adi" Type="nvarchar" MaxLength="100" />
+          <Property Name="kurum_adresi" Type="nvarchar" MaxLength="300" />
+          <Property Name="kurum_telefon" Type="char" MaxLength="11" />
+          <Property Name="yetkili_id" Type="int" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kurum_Yetkili">
+          <Key>
+            <PropertyRef Name="kurum_yetkili_id" />
+          </Key>
+          <Property Name="kurum_yetkili_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="kurum_id" Type="int" />
+          <Property Name="yetkili_id" Type="int" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Loglar">
+          <Key>
+            <PropertyRef Name="log_id" />
+          </Key>
+          <Property Name="log_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tablo_adi" Type="nvarchar" MaxLength="50" />
+          <Property Name="degisim_zamani" Type="datetime" />
+          <Property Name="ip_adresi" Type="varchar" MaxLength="45" />
+          <Property Name="kullanıcı_id" Type="int" />
+          <Property Name="log_detay" Type="nvarchar" MaxLength="500" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sevk">
+          <Key>
+            <PropertyRef Name="sevk_id" />
+          </Key>
+          <Property Name="sevk_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sevk_zamani" Type="datetime" />
+          <Property Name="basvuru_id" Type="int" />
+          <Property Name="birim_id" Type="int" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sorun_turu">
+          <Key>
+            <PropertyRef Name="sorun_turu_id" />
+          </Key>
+          <Property Name="sorun_turu_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sorun_turu" Type="nvarchar" MaxLength="100" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Yetkililer">
+          <Key>
+            <PropertyRef Name="yetkili_id" />
+          </Key>
+          <Property Name="yetkili_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ad" Type="nvarchar" MaxLength="100" />
+          <Property Name="soyad" Type="nvarchar" MaxLength="100" />
+          <Property Name="unvan" Type="nvarchar" MaxLength="100" />
+          <Property Name="e_posta" Type="nvarchar" MaxLength="100" />
+          <Property Name="telefon" Type="char" MaxLength="11" />
+          <Property Name="sifre" Type="nvarchar" MaxLength="100" />
+          <Property Name="is_admin" Type="bit" />
+          <Property Name="is_active" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Basvuru__is_acti__534D60F1">
+          <End Role="Sorun_turu" Type="Self.Sorun_turu" Multiplicity="0..1" />
+          <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sorun_turu">
+              <PropertyRef Name="sorun_turu_id" />
+            </Principal>
+            <Dependent Role="Basvuru">
+              <PropertyRef Name="sorun_turu_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Basvuru__kurum_i__5441852A">
+          <End Role="Kurum" Type="Self.Kurum" Multiplicity="0..1" />
+          <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kurum">
+              <PropertyRef Name="kurum_id" />
+            </Principal>
+            <Dependent Role="Basvuru">
+              <PropertyRef Name="kurum_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Basvuru__yetkili__5535A963">
+          <End Role="Yetkililer" Type="Self.Yetkililer" Multiplicity="0..1" />
+          <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yetkililer">
+              <PropertyRef Name="yetkili_id" />
+            </Principal>
+            <Dependent Role="Basvuru">
+              <PropertyRef Name="yetkili_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Birim__is_active__6383C8BA">
+          <End Role="Kurum" Type="Self.Kurum" Multiplicity="0..1" />
+          <End Role="Birim" Type="Self.Birim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kurum">
+              <PropertyRef Name="kurum_id" />
+            </Principal>
+            <Dependent Role="Birim">
+              <PropertyRef Name="kurum_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Birim_Yet__is_ac__6C190EBB">
+          <End Role="Birim" Type="Self.Birim" Multiplicity="0..1" />
+          <End Role="Birim_Yetkili" Type="Self.Birim_Yetkili" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Birim">
+              <PropertyRef Name="birim_id" />
+            </Principal>
+            <Dependent Role="Birim_Yetkili">
+              <PropertyRef Name="birim_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Birim_Yet__yetki__6D0D32F4">
+          <End Role="Yetkililer" Type="Self.Yetkililer" Multiplicity="0..1" />
+          <End Role="Birim_Yetkili" Type="Self.Birim_Yetkili" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yetkililer">
+              <PropertyRef Name="yetkili_id" />
+            </Principal>
+            <Dependent Role="Birim_Yetkili">
+              <PropertyRef Name="yetkili_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cevaplar__is_act__5CD6CB2B">
+          <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="0..1" />
+          <End Role="Cevaplar" Type="Self.Cevaplar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Basvuru">
+              <PropertyRef Name="basvuru_id" />
+            </Principal>
+            <Dependent Role="Cevaplar">
+              <PropertyRef Name="basvuru_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Dokumanla__is_ac__59063A47">
+          <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="0..1" />
+          <End Role="Dokumanlar" Type="Self.Dokumanlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Basvuru">
+              <PropertyRef Name="basvuru_id" />
+            </Principal>
+            <Dependent Role="Dokumanlar">
+              <PropertyRef Name="basvuru_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kanit__dokuman_t__76969D2E">
+          <End Role="Dokuman_turu" Type="Self.Dokuman_turu" Multiplicity="0..1" />
+          <End Role="Kanit" Type="Self.Kanit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dokuman_turu">
+              <PropertyRef Name="dokuman_turu_id" />
+            </Principal>
+            <Dependent Role="Kanit">
+              <PropertyRef Name="dokuman_turu_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kanit__is_active__75A278F5">
+          <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="0..1" />
+          <End Role="Kanit" Type="Self.Kanit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Basvuru">
+              <PropertyRef Name="basvuru_id" />
+            </Principal>
+            <Dependent Role="Kanit">
+              <PropertyRef Name="basvuru_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kurum_Yet__is_ac__6754599E">
+          <End Role="Kurum" Type="Self.Kurum" Multiplicity="0..1" />
+          <End Role="Kurum_Yetkili" Type="Self.Kurum_Yetkili" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kurum">
+              <PropertyRef Name="kurum_id" />
+            </Principal>
+            <Dependent Role="Kurum_Yetkili">
+              <PropertyRef Name="kurum_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kurum_Yet__yetki__68487DD7">
+          <End Role="Yetkililer" Type="Self.Yetkililer" Multiplicity="0..1" />
+          <End Role="Kurum_Yetkili" Type="Self.Kurum_Yetkili" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yetkililer">
+              <PropertyRef Name="yetkili_id" />
+            </Principal>
+            <Dependent Role="Kurum_Yetkili">
+              <PropertyRef Name="yetkili_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sevk__birim_id__71D1E811">
+          <End Role="Birim" Type="Self.Birim" Multiplicity="0..1" />
+          <End Role="Sevk" Type="Self.Sevk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Birim">
+              <PropertyRef Name="birim_id" />
+            </Principal>
+            <Dependent Role="Sevk">
+              <PropertyRef Name="birim_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sevk__is_active__70DDC3D8">
+          <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="0..1" />
+          <End Role="Sevk" Type="Self.Sevk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Basvuru">
+              <PropertyRef Name="basvuru_id" />
+            </Principal>
+            <Dependent Role="Sevk">
+              <PropertyRef Name="basvuru_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Bir_SikayetModelStoreContainer">
+          <EntitySet Name="Basvuru" EntityType="Self.Basvuru" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Birim" EntityType="Self.Birim" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Birim_Yetkili" EntityType="Self.Birim_Yetkili" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cevaplar" EntityType="Self.Cevaplar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dokuman_turu" EntityType="Self.Dokuman_turu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dokumanlar" EntityType="Self.Dokumanlar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kanit" EntityType="Self.Kanit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kurum" EntityType="Self.Kurum" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kurum_Yetkili" EntityType="Self.Kurum_Yetkili" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Loglar" EntityType="Self.Loglar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sevk" EntityType="Self.Sevk" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sorun_turu" EntityType="Self.Sorun_turu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Yetkililer" EntityType="Self.Yetkililer" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Basvuru__is_acti__534D60F1" Association="Self.FK__Basvuru__is_acti__534D60F1">
+            <End Role="Sorun_turu" EntitySet="Sorun_turu" />
+            <End Role="Basvuru" EntitySet="Basvuru" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Basvuru__kurum_i__5441852A" Association="Self.FK__Basvuru__kurum_i__5441852A">
+            <End Role="Kurum" EntitySet="Kurum" />
+            <End Role="Basvuru" EntitySet="Basvuru" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Basvuru__yetkili__5535A963" Association="Self.FK__Basvuru__yetkili__5535A963">
+            <End Role="Yetkililer" EntitySet="Yetkililer" />
+            <End Role="Basvuru" EntitySet="Basvuru" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Birim__is_active__6383C8BA" Association="Self.FK__Birim__is_active__6383C8BA">
+            <End Role="Kurum" EntitySet="Kurum" />
+            <End Role="Birim" EntitySet="Birim" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Birim_Yet__is_ac__6C190EBB" Association="Self.FK__Birim_Yet__is_ac__6C190EBB">
+            <End Role="Birim" EntitySet="Birim" />
+            <End Role="Birim_Yetkili" EntitySet="Birim_Yetkili" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Birim_Yet__yetki__6D0D32F4" Association="Self.FK__Birim_Yet__yetki__6D0D32F4">
+            <End Role="Yetkililer" EntitySet="Yetkililer" />
+            <End Role="Birim_Yetkili" EntitySet="Birim_Yetkili" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cevaplar__is_act__5CD6CB2B" Association="Self.FK__Cevaplar__is_act__5CD6CB2B">
+            <End Role="Basvuru" EntitySet="Basvuru" />
+            <End Role="Cevaplar" EntitySet="Cevaplar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Dokumanla__is_ac__59063A47" Association="Self.FK__Dokumanla__is_ac__59063A47">
+            <End Role="Basvuru" EntitySet="Basvuru" />
+            <End Role="Dokumanlar" EntitySet="Dokumanlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kanit__dokuman_t__76969D2E" Association="Self.FK__Kanit__dokuman_t__76969D2E">
+            <End Role="Dokuman_turu" EntitySet="Dokuman_turu" />
+            <End Role="Kanit" EntitySet="Kanit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kanit__is_active__75A278F5" Association="Self.FK__Kanit__is_active__75A278F5">
+            <End Role="Basvuru" EntitySet="Basvuru" />
+            <End Role="Kanit" EntitySet="Kanit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kurum_Yet__is_ac__6754599E" Association="Self.FK__Kurum_Yet__is_ac__6754599E">
+            <End Role="Kurum" EntitySet="Kurum" />
+            <End Role="Kurum_Yetkili" EntitySet="Kurum_Yetkili" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kurum_Yet__yetki__68487DD7" Association="Self.FK__Kurum_Yet__yetki__68487DD7">
+            <End Role="Yetkililer" EntitySet="Yetkililer" />
+            <End Role="Kurum_Yetkili" EntitySet="Kurum_Yetkili" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sevk__birim_id__71D1E811" Association="Self.FK__Sevk__birim_id__71D1E811">
+            <End Role="Birim" EntitySet="Birim" />
+            <End Role="Sevk" EntitySet="Sevk" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sevk__is_active__70DDC3D8" Association="Self.FK__Sevk__is_active__70DDC3D8">
+            <End Role="Basvuru" EntitySet="Basvuru" />
+            <End Role="Sevk" EntitySet="Sevk" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Bir_SikayetModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Basvuru">
+          <Key>
+            <PropertyRef Name="basvuru_id" />
+          </Key>
+          <Property Name="basvuru_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="konum" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="basvuru_zamani" Type="DateTime" Precision="3" />
+          <Property Name="basvuru_durumu" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="dogrulanan_kisi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="sorun_turu_id" Type="Int32" />
+          <Property Name="kurum_id" Type="Int32" />
+          <Property Name="yetkili_id" Type="Int32" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Sorun_turu" Relationship="Self.FK__Basvuru__is_acti__534D60F1" FromRole="Basvuru" ToRole="Sorun_turu" />
+          <NavigationProperty Name="Kurum" Relationship="Self.FK__Basvuru__kurum_i__5441852A" FromRole="Basvuru" ToRole="Kurum" />
+          <NavigationProperty Name="Yetkililer" Relationship="Self.FK__Basvuru__yetkili__5535A963" FromRole="Basvuru" ToRole="Yetkililer" />
+          <NavigationProperty Name="Cevaplar" Relationship="Self.FK__Cevaplar__is_act__5CD6CB2B" FromRole="Basvuru" ToRole="Cevaplar" />
+          <NavigationProperty Name="Dokumanlar" Relationship="Self.FK__Dokumanla__is_ac__59063A47" FromRole="Basvuru" ToRole="Dokumanlar" />
+          <NavigationProperty Name="Kanit" Relationship="Self.FK__Kanit__is_active__75A278F5" FromRole="Basvuru" ToRole="Kanit" />
+          <NavigationProperty Name="Sevk" Relationship="Self.FK__Sevk__is_active__70DDC3D8" FromRole="Basvuru" ToRole="Sevk" />
+        </EntityType>
+        <EntityType Name="Birim">
+          <Key>
+            <PropertyRef Name="birim_id" />
+          </Key>
+          <Property Name="birim_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="kurum_id" Type="Int32" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Kurum" Relationship="Self.FK__Birim__is_active__6383C8BA" FromRole="Birim" ToRole="Kurum" />
+          <NavigationProperty Name="Birim_Yetkili" Relationship="Self.FK__Birim_Yet__is_ac__6C190EBB" FromRole="Birim" ToRole="Birim_Yetkili" />
+          <NavigationProperty Name="Sevk" Relationship="Self.FK__Sevk__birim_id__71D1E811" FromRole="Birim" ToRole="Sevk" />
+        </EntityType>
+        <EntityType Name="Birim_Yetkili">
+          <Key>
+            <PropertyRef Name="birim_yetkili_id" />
+          </Key>
+          <Property Name="birim_yetkili_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="birim_id" Type="Int32" />
+          <Property Name="yetkili_id" Type="Int32" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Birim" Relationship="Self.FK__Birim_Yet__is_ac__6C190EBB" FromRole="Birim_Yetkili" ToRole="Birim" />
+          <NavigationProperty Name="Yetkililer" Relationship="Self.FK__Birim_Yet__yetki__6D0D32F4" FromRole="Birim_Yetkili" ToRole="Yetkililer" />
+        </EntityType>
+        <EntityType Name="Cevaplar">
+          <Key>
+            <PropertyRef Name="cevap_id" />
+          </Key>
+          <Property Name="cevap_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="cevap_zamani" Type="DateTime" Precision="3" />
+          <Property Name="cevap_metni" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="basvuru_id" Type="Int32" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Basvuru" Relationship="Self.FK__Cevaplar__is_act__5CD6CB2B" FromRole="Cevaplar" ToRole="Basvuru" />
+        </EntityType>
+        <EntityType Name="Dokuman_turu">
+          <Key>
+            <PropertyRef Name="dokuman_turu_id" />
+          </Key>
+          <Property Name="dokuman_turu_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="turu" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Kanit" Relationship="Self.FK__Kanit__dokuman_t__76969D2E" FromRole="Dokuman_turu" ToRole="Kanit" />
+        </EntityType>
+        <EntityType Name="Dokumanlar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="dosya_adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dosya_tipi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="dosya_boyutu" Type="Int32" />
+          <Property Name="basvuru_id" Type="Int32" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Basvuru" Relationship="Self.FK__Dokumanla__is_ac__59063A47" FromRole="Dokumanlar" ToRole="Basvuru" />
+        </EntityType>
+        <EntityType Name="Kanit">
+          <Key>
+            <PropertyRef Name="kanit_id" />
+          </Key>
+          <Property Name="kanit_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kanit1" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="kanit_zamani" Type="DateTime" Precision="3" />
+          <Property Name="dokuman_turu_id" Type="Int32" />
+          <Property Name="basvuru_id" Type="Int32" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Basvuru" Relationship="Self.FK__Kanit__is_active__75A278F5" FromRole="Kanit" ToRole="Basvuru" />
+          <NavigationProperty Name="Dokuman_turu" Relationship="Self.FK__Kanit__dokuman_t__76969D2E" FromRole="Kanit" ToRole="Dokuman_turu" />
+        </EntityType>
+        <EntityType Name="Kurum">
+          <Key>
+            <PropertyRef Name="kurum_id" />
+          </Key>
+          <Property Name="kurum_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kurum_adi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="kurum_adresi" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="kurum_telefon" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="yetkili_id" Type="Int32" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Basvuru" Relationship="Self.FK__Basvuru__kurum_i__5441852A" FromRole="Kurum" ToRole="Basvuru" />
+          <NavigationProperty Name="Birim" Relationship="Self.FK__Birim__is_active__6383C8BA" FromRole="Kurum" ToRole="Birim" />
+          <NavigationProperty Name="Kurum_Yetkili" Relationship="Self.FK__Kurum_Yet__is_ac__6754599E" FromRole="Kurum" ToRole="Kurum_Yetkili" />
+        </EntityType>
+        <EntityType Name="Kurum_Yetkili">
+          <Key>
+            <PropertyRef Name="kurum_yetkili_id" />
+          </Key>
+          <Property Name="kurum_yetkili_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="kurum_id" Type="Int32" />
+          <Property Name="yetkili_id" Type="Int32" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Kurum" Relationship="Self.FK__Kurum_Yet__is_ac__6754599E" FromRole="Kurum_Yetkili" ToRole="Kurum" />
+          <NavigationProperty Name="Yetkililer" Relationship="Self.FK__Kurum_Yet__yetki__68487DD7" FromRole="Kurum_Yetkili" ToRole="Yetkililer" />
+        </EntityType>
+        <EntityType Name="Loglar">
+          <Key>
+            <PropertyRef Name="log_id" />
+          </Key>
+          <Property Name="log_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tablo_adi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="degisim_zamani" Type="DateTime" Precision="3" />
+          <Property Name="ip_adresi" Type="String" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Name="kullanıcı_id" Type="Int32" />
+          <Property Name="log_detay" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sevk">
+          <Key>
+            <PropertyRef Name="sevk_id" />
+          </Key>
+          <Property Name="sevk_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sevk_zamani" Type="DateTime" Precision="3" />
+          <Property Name="basvuru_id" Type="Int32" />
+          <Property Name="birim_id" Type="Int32" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Basvuru" Relationship="Self.FK__Sevk__is_active__70DDC3D8" FromRole="Sevk" ToRole="Basvuru" />
+          <NavigationProperty Name="Birim" Relationship="Self.FK__Sevk__birim_id__71D1E811" FromRole="Sevk" ToRole="Birim" />
+        </EntityType>
+        <EntityType Name="Sorun_turu">
+          <Key>
+            <PropertyRef Name="sorun_turu_id" />
+          </Key>
+          <Property Name="sorun_turu_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sorun_turu1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Basvuru" Relationship="Self.FK__Basvuru__is_acti__534D60F1" FromRole="Sorun_turu" ToRole="Basvuru" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Yetkililer">
+          <Key>
+            <PropertyRef Name="yetkili_id" />
+          </Key>
+          <Property Name="yetkili_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="soyad" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="unvan" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="e_posta" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="telefon" Type="String" MaxLength="11" FixedLength="true" Unicode="false" />
+          <Property Name="sifre" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="is_admin" Type="Boolean" />
+          <Property Name="is_active" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Basvuru" Relationship="Self.FK__Basvuru__yetkili__5535A963" FromRole="Yetkililer" ToRole="Basvuru" />
+          <NavigationProperty Name="Birim_Yetkili" Relationship="Self.FK__Birim_Yet__yetki__6D0D32F4" FromRole="Yetkililer" ToRole="Birim_Yetkili" />
+          <NavigationProperty Name="Kurum_Yetkili" Relationship="Self.FK__Kurum_Yet__yetki__68487DD7" FromRole="Yetkililer" ToRole="Kurum_Yetkili" />
+        </EntityType>
+        <Association Name="FK__Basvuru__is_acti__534D60F1">
+          <End Role="Sorun_turu" Type="Self.Sorun_turu" Multiplicity="0..1" />
+          <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sorun_turu">
+              <PropertyRef Name="sorun_turu_id" />
+            </Principal>
+            <Dependent Role="Basvuru">
+              <PropertyRef Name="sorun_turu_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Basvuru__kurum_i__5441852A">
+          <End Role="Kurum" Type="Self.Kurum" Multiplicity="0..1" />
+          <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kurum">
+              <PropertyRef Name="kurum_id" />
+            </Principal>
+            <Dependent Role="Basvuru">
+              <PropertyRef Name="kurum_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Basvuru__yetkili__5535A963">
+          <End Role="Yetkililer" Type="Self.Yetkililer" Multiplicity="0..1" />
+          <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yetkililer">
+              <PropertyRef Name="yetkili_id" />
+            </Principal>
+            <Dependent Role="Basvuru">
+              <PropertyRef Name="yetkili_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Cevaplar__is_act__5CD6CB2B">
+          <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="0..1" />
+          <End Role="Cevaplar" Type="Self.Cevaplar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Basvuru">
+              <PropertyRef Name="basvuru_id" />
+            </Principal>
+            <Dependent Role="Cevaplar">
+              <PropertyRef Name="basvuru_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Dokumanla__is_ac__59063A47">
+          <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="0..1" />
+          <End Role="Dokumanlar" Type="Self.Dokumanlar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Basvuru">
+              <PropertyRef Name="basvuru_id" />
+            </Principal>
+            <Dependent Role="Dokumanlar">
+              <PropertyRef Name="basvuru_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kanit__is_active__75A278F5">
+          <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="0..1" />
+          <End Role="Kanit" Type="Self.Kanit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Basvuru">
+              <PropertyRef Name="basvuru_id" />
+            </Principal>
+            <Dependent Role="Kanit">
+              <PropertyRef Name="basvuru_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sevk__is_active__70DDC3D8">
+          <End Role="Basvuru" Type="Self.Basvuru" Multiplicity="0..1" />
+          <End Role="Sevk" Type="Self.Sevk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Basvuru">
+              <PropertyRef Name="basvuru_id" />
+            </Principal>
+            <Dependent Role="Sevk">
+              <PropertyRef Name="basvuru_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Birim__is_active__6383C8BA">
+          <End Role="Kurum" Type="Self.Kurum" Multiplicity="0..1" />
+          <End Role="Birim" Type="Self.Birim" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kurum">
+              <PropertyRef Name="kurum_id" />
+            </Principal>
+            <Dependent Role="Birim">
+              <PropertyRef Name="kurum_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Birim_Yet__is_ac__6C190EBB">
+          <End Role="Birim" Type="Self.Birim" Multiplicity="0..1" />
+          <End Role="Birim_Yetkili" Type="Self.Birim_Yetkili" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Birim">
+              <PropertyRef Name="birim_id" />
+            </Principal>
+            <Dependent Role="Birim_Yetkili">
+              <PropertyRef Name="birim_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sevk__birim_id__71D1E811">
+          <End Role="Birim" Type="Self.Birim" Multiplicity="0..1" />
+          <End Role="Sevk" Type="Self.Sevk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Birim">
+              <PropertyRef Name="birim_id" />
+            </Principal>
+            <Dependent Role="Sevk">
+              <PropertyRef Name="birim_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Birim_Yet__yetki__6D0D32F4">
+          <End Role="Yetkililer" Type="Self.Yetkililer" Multiplicity="0..1" />
+          <End Role="Birim_Yetkili" Type="Self.Birim_Yetkili" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yetkililer">
+              <PropertyRef Name="yetkili_id" />
+            </Principal>
+            <Dependent Role="Birim_Yetkili">
+              <PropertyRef Name="yetkili_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kanit__dokuman_t__76969D2E">
+          <End Role="Dokuman_turu" Type="Self.Dokuman_turu" Multiplicity="0..1" />
+          <End Role="Kanit" Type="Self.Kanit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dokuman_turu">
+              <PropertyRef Name="dokuman_turu_id" />
+            </Principal>
+            <Dependent Role="Kanit">
+              <PropertyRef Name="dokuman_turu_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kurum_Yet__is_ac__6754599E">
+          <End Role="Kurum" Type="Self.Kurum" Multiplicity="0..1" />
+          <End Role="Kurum_Yetkili" Type="Self.Kurum_Yetkili" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kurum">
+              <PropertyRef Name="kurum_id" />
+            </Principal>
+            <Dependent Role="Kurum_Yetkili">
+              <PropertyRef Name="kurum_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Kurum_Yet__yetki__68487DD7">
+          <End Role="Yetkililer" Type="Self.Yetkililer" Multiplicity="0..1" />
+          <End Role="Kurum_Yetkili" Type="Self.Kurum_Yetkili" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Yetkililer">
+              <PropertyRef Name="yetkili_id" />
+            </Principal>
+            <Dependent Role="Kurum_Yetkili">
+              <PropertyRef Name="yetkili_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Bir_SikayetEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Basvuru" EntityType="Self.Basvuru" />
+          <EntitySet Name="Birim" EntityType="Self.Birim" />
+          <EntitySet Name="Birim_Yetkili" EntityType="Self.Birim_Yetkili" />
+          <EntitySet Name="Cevaplar" EntityType="Self.Cevaplar" />
+          <EntitySet Name="Dokuman_turu" EntityType="Self.Dokuman_turu" />
+          <EntitySet Name="Dokumanlar" EntityType="Self.Dokumanlar" />
+          <EntitySet Name="Kanit" EntityType="Self.Kanit" />
+          <EntitySet Name="Kurum" EntityType="Self.Kurum" />
+          <EntitySet Name="Kurum_Yetkili" EntityType="Self.Kurum_Yetkili" />
+          <EntitySet Name="Loglar" EntityType="Self.Loglar" />
+          <EntitySet Name="Sevk" EntityType="Self.Sevk" />
+          <EntitySet Name="Sorun_turu" EntityType="Self.Sorun_turu" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Yetkililer" EntityType="Self.Yetkililer" />
+          <AssociationSet Name="FK__Basvuru__is_acti__534D60F1" Association="Self.FK__Basvuru__is_acti__534D60F1">
+            <End Role="Sorun_turu" EntitySet="Sorun_turu" />
+            <End Role="Basvuru" EntitySet="Basvuru" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Basvuru__kurum_i__5441852A" Association="Self.FK__Basvuru__kurum_i__5441852A">
+            <End Role="Kurum" EntitySet="Kurum" />
+            <End Role="Basvuru" EntitySet="Basvuru" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Basvuru__yetkili__5535A963" Association="Self.FK__Basvuru__yetkili__5535A963">
+            <End Role="Yetkililer" EntitySet="Yetkililer" />
+            <End Role="Basvuru" EntitySet="Basvuru" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Cevaplar__is_act__5CD6CB2B" Association="Self.FK__Cevaplar__is_act__5CD6CB2B">
+            <End Role="Basvuru" EntitySet="Basvuru" />
+            <End Role="Cevaplar" EntitySet="Cevaplar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Dokumanla__is_ac__59063A47" Association="Self.FK__Dokumanla__is_ac__59063A47">
+            <End Role="Basvuru" EntitySet="Basvuru" />
+            <End Role="Dokumanlar" EntitySet="Dokumanlar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kanit__is_active__75A278F5" Association="Self.FK__Kanit__is_active__75A278F5">
+            <End Role="Basvuru" EntitySet="Basvuru" />
+            <End Role="Kanit" EntitySet="Kanit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sevk__is_active__70DDC3D8" Association="Self.FK__Sevk__is_active__70DDC3D8">
+            <End Role="Basvuru" EntitySet="Basvuru" />
+            <End Role="Sevk" EntitySet="Sevk" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Birim__is_active__6383C8BA" Association="Self.FK__Birim__is_active__6383C8BA">
+            <End Role="Kurum" EntitySet="Kurum" />
+            <End Role="Birim" EntitySet="Birim" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Birim_Yet__is_ac__6C190EBB" Association="Self.FK__Birim_Yet__is_ac__6C190EBB">
+            <End Role="Birim" EntitySet="Birim" />
+            <End Role="Birim_Yetkili" EntitySet="Birim_Yetkili" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sevk__birim_id__71D1E811" Association="Self.FK__Sevk__birim_id__71D1E811">
+            <End Role="Birim" EntitySet="Birim" />
+            <End Role="Sevk" EntitySet="Sevk" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Birim_Yet__yetki__6D0D32F4" Association="Self.FK__Birim_Yet__yetki__6D0D32F4">
+            <End Role="Yetkililer" EntitySet="Yetkililer" />
+            <End Role="Birim_Yetkili" EntitySet="Birim_Yetkili" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kanit__dokuman_t__76969D2E" Association="Self.FK__Kanit__dokuman_t__76969D2E">
+            <End Role="Dokuman_turu" EntitySet="Dokuman_turu" />
+            <End Role="Kanit" EntitySet="Kanit" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kurum_Yet__is_ac__6754599E" Association="Self.FK__Kurum_Yet__is_ac__6754599E">
+            <End Role="Kurum" EntitySet="Kurum" />
+            <End Role="Kurum_Yetkili" EntitySet="Kurum_Yetkili" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Kurum_Yet__yetki__68487DD7" Association="Self.FK__Kurum_Yet__yetki__68487DD7">
+            <End Role="Yetkililer" EntitySet="Yetkililer" />
+            <End Role="Kurum_Yetkili" EntitySet="Kurum_Yetkili" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Bir_SikayetModelStoreContainer" CdmEntityContainer="Bir_SikayetEntities">
+          <EntitySetMapping Name="Basvuru">
+            <EntityTypeMapping TypeName="Bir_SikayetModel.Basvuru">
+              <MappingFragment StoreEntitySet="Basvuru">
+                <ScalarProperty Name="basvuru_id" ColumnName="basvuru_id" />
+                <ScalarProperty Name="konum" ColumnName="konum" />
+                <ScalarProperty Name="basvuru_zamani" ColumnName="basvuru_zamani" />
+                <ScalarProperty Name="basvuru_durumu" ColumnName="basvuru_durumu" />
+                <ScalarProperty Name="dogrulanan_kisi" ColumnName="dogrulanan_kisi" />
+                <ScalarProperty Name="sorun_turu_id" ColumnName="sorun_turu_id" />
+                <ScalarProperty Name="kurum_id" ColumnName="kurum_id" />
+                <ScalarProperty Name="yetkili_id" ColumnName="yetkili_id" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Birim">
+            <EntityTypeMapping TypeName="Bir_SikayetModel.Birim">
+              <MappingFragment StoreEntitySet="Birim">
+                <ScalarProperty Name="birim_id" ColumnName="birim_id" />
+                <ScalarProperty Name="ad" ColumnName="ad" />
+                <ScalarProperty Name="kurum_id" ColumnName="kurum_id" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Birim_Yetkili">
+            <EntityTypeMapping TypeName="Bir_SikayetModel.Birim_Yetkili">
+              <MappingFragment StoreEntitySet="Birim_Yetkili">
+                <ScalarProperty Name="birim_yetkili_id" ColumnName="birim_yetkili_id" />
+                <ScalarProperty Name="birim_id" ColumnName="birim_id" />
+                <ScalarProperty Name="yetkili_id" ColumnName="yetkili_id" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cevaplar">
+            <EntityTypeMapping TypeName="Bir_SikayetModel.Cevaplar">
+              <MappingFragment StoreEntitySet="Cevaplar">
+                <ScalarProperty Name="cevap_id" ColumnName="cevap_id" />
+                <ScalarProperty Name="cevap_zamani" ColumnName="cevap_zamani" />
+                <ScalarProperty Name="cevap_metni" ColumnName="cevap_metni" />
+                <ScalarProperty Name="basvuru_id" ColumnName="basvuru_id" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dokuman_turu">
+            <EntityTypeMapping TypeName="Bir_SikayetModel.Dokuman_turu">
+              <MappingFragment StoreEntitySet="Dokuman_turu">
+                <ScalarProperty Name="dokuman_turu_id" ColumnName="dokuman_turu_id" />
+                <ScalarProperty Name="turu" ColumnName="turu" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dokumanlar">
+            <EntityTypeMapping TypeName="Bir_SikayetModel.Dokumanlar">
+              <MappingFragment StoreEntitySet="Dokumanlar">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="dosya_adi" ColumnName="dosya_adi" />
+                <ScalarProperty Name="dosya_tipi" ColumnName="dosya_tipi" />
+                <ScalarProperty Name="dosya_boyutu" ColumnName="dosya_boyutu" />
+                <ScalarProperty Name="basvuru_id" ColumnName="basvuru_id" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kanit">
+            <EntityTypeMapping TypeName="Bir_SikayetModel.Kanit">
+              <MappingFragment StoreEntitySet="Kanit">
+                <ScalarProperty Name="kanit_id" ColumnName="kanit_id" />
+                <ScalarProperty Name="kanit1" ColumnName="kanit" />
+                <ScalarProperty Name="kanit_zamani" ColumnName="kanit_zamani" />
+                <ScalarProperty Name="dokuman_turu_id" ColumnName="dokuman_turu_id" />
+                <ScalarProperty Name="basvuru_id" ColumnName="basvuru_id" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kurum">
+            <EntityTypeMapping TypeName="Bir_SikayetModel.Kurum">
+              <MappingFragment StoreEntitySet="Kurum">
+                <ScalarProperty Name="kurum_id" ColumnName="kurum_id" />
+                <ScalarProperty Name="kurum_adi" ColumnName="kurum_adi" />
+                <ScalarProperty Name="kurum_adresi" ColumnName="kurum_adresi" />
+                <ScalarProperty Name="kurum_telefon" ColumnName="kurum_telefon" />
+                <ScalarProperty Name="yetkili_id" ColumnName="yetkili_id" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kurum_Yetkili">
+            <EntityTypeMapping TypeName="Bir_SikayetModel.Kurum_Yetkili">
+              <MappingFragment StoreEntitySet="Kurum_Yetkili">
+                <ScalarProperty Name="kurum_yetkili_id" ColumnName="kurum_yetkili_id" />
+                <ScalarProperty Name="kurum_id" ColumnName="kurum_id" />
+                <ScalarProperty Name="yetkili_id" ColumnName="yetkili_id" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Loglar">
+            <EntityTypeMapping TypeName="Bir_SikayetModel.Loglar">
+              <MappingFragment StoreEntitySet="Loglar">
+                <ScalarProperty Name="log_id" ColumnName="log_id" />
+                <ScalarProperty Name="tablo_adi" ColumnName="tablo_adi" />
+                <ScalarProperty Name="degisim_zamani" ColumnName="degisim_zamani" />
+                <ScalarProperty Name="ip_adresi" ColumnName="ip_adresi" />
+                <ScalarProperty Name="kullanıcı_id" ColumnName="kullanıcı_id" />
+                <ScalarProperty Name="log_detay" ColumnName="log_detay" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sevk">
+            <EntityTypeMapping TypeName="Bir_SikayetModel.Sevk">
+              <MappingFragment StoreEntitySet="Sevk">
+                <ScalarProperty Name="sevk_id" ColumnName="sevk_id" />
+                <ScalarProperty Name="sevk_zamani" ColumnName="sevk_zamani" />
+                <ScalarProperty Name="basvuru_id" ColumnName="basvuru_id" />
+                <ScalarProperty Name="birim_id" ColumnName="birim_id" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sorun_turu">
+            <EntityTypeMapping TypeName="Bir_SikayetModel.Sorun_turu">
+              <MappingFragment StoreEntitySet="Sorun_turu">
+                <ScalarProperty Name="sorun_turu_id" ColumnName="sorun_turu_id" />
+                <ScalarProperty Name="sorun_turu1" ColumnName="sorun_turu" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="Bir_SikayetModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Yetkililer">
+            <EntityTypeMapping TypeName="Bir_SikayetModel.Yetkililer">
+              <MappingFragment StoreEntitySet="Yetkililer">
+                <ScalarProperty Name="yetkili_id" ColumnName="yetkili_id" />
+                <ScalarProperty Name="ad" ColumnName="ad" />
+                <ScalarProperty Name="soyad" ColumnName="soyad" />
+                <ScalarProperty Name="unvan" ColumnName="unvan" />
+                <ScalarProperty Name="e_posta" ColumnName="e_posta" />
+                <ScalarProperty Name="telefon" ColumnName="telefon" />
+                <ScalarProperty Name="sifre" ColumnName="sifre" />
+                <ScalarProperty Name="is_admin" ColumnName="is_admin" />
+                <ScalarProperty Name="is_active" ColumnName="is_active" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="72e3082757974552a800993bd483cbf9" Name="Diagram1">
+        <EntityTypeShape EntityType="Bir_SikayetModel.Basvuru" Width="1.5" PointX="3" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bir_SikayetModel.Birim" Width="1.5" PointX="3" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bir_SikayetModel.Birim_Yetkili" Width="1.5" PointX="5.25" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bir_SikayetModel.Cevaplar" Width="1.5" PointX="5.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bir_SikayetModel.Dokuman_turu" Width="1.5" PointX="6" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bir_SikayetModel.Dokumanlar" Width="1.5" PointX="5.25" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bir_SikayetModel.Kanit" Width="1.5" PointX="8.25" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bir_SikayetModel.Kurum" Width="1.5" PointX="0.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bir_SikayetModel.Kurum_Yetkili" Width="1.5" PointX="6" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bir_SikayetModel.Loglar" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bir_SikayetModel.Sevk" Width="1.5" PointX="8.25" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bir_SikayetModel.Sorun_turu" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bir_SikayetModel.sysdiagrams" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="Bir_SikayetModel.Yetkililer" Width="1.5" PointX="0.75" PointY="13.25" IsExpanded="true" />
+        <AssociationConnector Association="Bir_SikayetModel.FK__Basvuru__is_acti__534D60F1" ManuallyRouted="false" />
+        <AssociationConnector Association="Bir_SikayetModel.FK__Basvuru__kurum_i__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="Bir_SikayetModel.FK__Basvuru__yetkili__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="Bir_SikayetModel.FK__Cevaplar__is_act__5CD6CB2B" ManuallyRouted="false" />
+        <AssociationConnector Association="Bir_SikayetModel.FK__Dokumanla__is_ac__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="Bir_SikayetModel.FK__Kanit__is_active__75A278F5" ManuallyRouted="false" />
+        <AssociationConnector Association="Bir_SikayetModel.FK__Sevk__is_active__70DDC3D8" ManuallyRouted="false" />
+        <AssociationConnector Association="Bir_SikayetModel.FK__Birim__is_active__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="Bir_SikayetModel.FK__Birim_Yet__is_ac__6C190EBB" ManuallyRouted="false" />
+        <AssociationConnector Association="Bir_SikayetModel.FK__Sevk__birim_id__71D1E811" ManuallyRouted="false" />
+        <AssociationConnector Association="Bir_SikayetModel.FK__Birim_Yet__yetki__6D0D32F4" ManuallyRouted="false" />
+        <AssociationConnector Association="Bir_SikayetModel.FK__Kanit__dokuman_t__76969D2E" ManuallyRouted="false" />
+        <AssociationConnector Association="Bir_SikayetModel.FK__Kurum_Yet__is_ac__6754599E" ManuallyRouted="false" />
+        <AssociationConnector Association="Bir_SikayetModel.FK__Kurum_Yet__yetki__68487DD7" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

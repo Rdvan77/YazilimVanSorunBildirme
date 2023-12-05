@@ -1,0 +1,89 @@
+﻿@model YazilimVanSorunBildirme.Models.Basvuru
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Basvuru sil</h2>
+
+<h3>Silmek istediğinize emin misiniz?</h3>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.konum)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.konum)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.basvuru_zamani)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.basvuru_zamani)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.basvuru_durumu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.basvuru_durumu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.dogrulanan_kisi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.dogrulanan_kisi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.is_active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.is_active)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sorun_turu.sorun_turu1)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sorun_turu.sorun_turu1)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kurum.kurum_adi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kurum.kurum_adi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Yetkililer.ad)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Yetkililer.ad)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+<div class="form-actions no-color">
+    <input type="submit" value="Sil" class="btn btn-outline-danger" /> |
+    @Html.ActionLink("<-Önceki Sayfaya Dön", "Index")
+
+</div>
+    }
+</div>
